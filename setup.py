@@ -8,6 +8,7 @@ setup(
     description="Lightweight version of django-simple-captcha for work with django-rest-framework",
 
     packages=find_packages(),
+    package_data={'rest_captcha': ['fonts/*', '*.png']},
     python_requires='>=3.6',
     install_requires=[
         'djangorestframework>=3.5',
