@@ -1,14 +1,16 @@
-from uuid import uuid4
-import os
 import base64
-from six import PY2
+import os
+from uuid import uuid4
+
 from PIL import Image
-from django.test import TestCase, override_settings
-from django.core.urlresolvers import reverse
-from rest_captcha.serializers import RestCaptchaSerializer
 from django.core.cache import cache
-from .settings import api_settings
+from django.test import TestCase, override_settings
+from django.urls import reverse
+from six import PY2
+
+from rest_captcha.serializers import RestCaptchaSerializer
 from . import utils
+from .settings import api_settings
 
 try:
     from cStringIO import StringIO
