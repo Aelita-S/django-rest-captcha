@@ -1,5 +1,11 @@
 from rest_framework import serializers
-from django.utils.translation import ugettext as _
+
+try:
+    from django.utils.translation import ugettext as _
+except ImportError:
+    # Django v4 compatibility
+    from django.utils.translation import gettext as _
+
 from django.core.cache import caches
 from .settings import api_settings
 from . import utils
@@ -22,7 +28,7 @@ class RestCaptchaSerializer(serializers.Serializer):
 
         if real_value is None:
             raise serializers.ValidationError(
-                 _('Invalid or expired captcha key'))
+                _('Invalid or expired captcha key'))
 
         cache.delete(cache_key)
         if data['captcha_value'].upper() != real_value:
